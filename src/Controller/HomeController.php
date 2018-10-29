@@ -14,11 +14,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/home")
+     * @Route("/")
      */
     public function index()
     {
-        $welcome = 'Hello Wilder';
+        $welcome = 'Hello WCS';
         return $this->render('home.html.twig', [
             'welcome' => $welcome,
         ]);
