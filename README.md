@@ -1,2 +1,2 @@
 # blog
-Ne cherchez pas le getCategory dans le CategoryController. Il est direct dans la vue.
+Ne cherchez pas le getCategory dans les Controller. Il est direct dans la vue.
