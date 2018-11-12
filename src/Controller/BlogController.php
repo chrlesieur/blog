@@ -8,8 +8,12 @@
 
 namespace App\Controller;
 
+use App\Repository\ArticleRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Form\ArticleSearchType;
+use Symfony\Component\HttpFoundation\Request;
+
 
 class BlogController extends AbstractController
 {
@@ -20,8 +24,33 @@ class BlogController extends AbstractController
 
     public function show($page = "article-du-1-janvier-1970")
     {
-        $page = str_replace('-',' ',$page);
+        $page = str_replace('-', ' ', $page);
         $page = ucwords($page);
         return $this->render('Blog/blog.html.twig', ['page' => $page]);
     }
+    /**
+     * @Route("/blog/", name="blog_index")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+
+    public function index(ArticleRepository $articles)
+    {
+
+        $form = $this->createForm(
+            ArticleSearchType::class,
+            null,
+            ['method' => Request::METHOD_GET]
+        );
+
+
+
+        return $this->render('Blog/index.html.twig', [
+                'articles' => $articles -> findAll(),
+                'form' => $form->createView(),
+            ]
+        );
+    }
 }
+
+
+
