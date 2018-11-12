@@ -24,5 +24,14 @@ class CategoryController extends AbstractController
             return $this->render('category.html.twig', ['category' => $category->getName(), 'articles'=> $category->getArticles()]);
         }
     }
+    /**
+     * @Route("/showCategory/{id}", name="category_show")
+     */
+    public function showCategory(Category $category)
+    {
+        {
+            return $this->render('showCategory.html.twig', ['category'=>$category->getName()]);
+        }
+    }
 
 }
