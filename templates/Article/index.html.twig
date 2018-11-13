@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+
+    {% for article in articles %}
+        <h1>{{ article.title}}</h1>
+        <h2>{{ article.category.name }}</h2>
+        <p>{{ article.content }}</p>
+    {% endfor %}
+
+{% endblock %}
