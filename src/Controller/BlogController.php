@@ -69,7 +69,7 @@ class BlogController extends AbstractController
         $articles = $this->getDoctrine()
             ->getRepository(Article::class)
             ->findBy(['category' => $category],['id'=>'DESC'],
-                5,
+                3,
                 0
             );
         return $this->render('Blog/category.html.twig', [
