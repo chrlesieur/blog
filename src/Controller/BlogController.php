@@ -8,11 +8,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
+use App\Entity\Category;
 use App\Repository\ArticleRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Form\ArticleSearchType;
 use Symfony\Component\HttpFoundation\Request;
+use App\Repository\CategoryRepository;
 
 
 class BlogController extends AbstractController
@@ -42,13 +45,36 @@ class BlogController extends AbstractController
             ['method' => Request::METHOD_GET]
         );
 
-
+        if (!$articles) {
+            throw $this->createNotFoundException(
+                'No article found in article\'s table.'
+            );
+        }
 
         return $this->render('Blog/index.html.twig', [
                 'articles' => $articles -> findAll(),
                 'form' => $form->createView(),
             ]
         );
+    }
+    /**
+     *  @Route("/category/{category}", name="blog_show_category"))
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function showByCategory(string $category)
+    {
+        $category = $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->findOneBy(['name'=>$category]);
+        $articles = $this->getDoctrine()
+            ->getRepository(Article::class)
+            ->findBy(['category' => $category],['id'=>'DESC'],
+                5,
+                0
+            );
+        return $this->render('Blog/category.html.twig', [
+            'category' => $category, 'articles' => $articles
+        ]);
     }
 }
 
