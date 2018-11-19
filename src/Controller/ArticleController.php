@@ -47,4 +47,13 @@ class ArticleController extends AbstractController
             ]
         );
     }
+    /**
+     * @Route("/article/{id}")
+     */
+    public function show(Article $article)
+    {
+        {
+            return $this->render('Article/article.html.twig', ['article' => $article->getTitle(), 'tags' => $article->getTags()]);
+        }
+    }
 }
