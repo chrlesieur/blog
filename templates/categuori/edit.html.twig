@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Categuori{% endblock %}
+
+{% block body %}
+    <h1>Edit Categuori</h1>
+
+    {{ include('categuori/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('categuori_index') }}">back to list</a>
+
+    {{ include('categuori/_delete_form.html.twig') }}
+{% endblock %}

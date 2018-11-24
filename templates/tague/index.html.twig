@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tague index{% endblock %}
+
+{% block body %}
+    <h1>Tague index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tague in tagues %}
+            <tr>
+                <td>{{ tague.id }}</td>
+                <td>{{ tague.name }}</td>
+                <td>
+                    <a href="{{ path('tague_show', {'id': tague.id}) }}">show</a>
+                    <a href="{{ path('tague_edit', {'id': tague.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('tague_new') }}">Create new</a>
+{% endblock %}

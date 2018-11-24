@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categuori{% endblock %}
+
+{% block body %}
+    <h1>Categuori</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ categuori.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ categuori.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('categuori_index') }}">back to list</a>
+
+    <a href="{{ path('categuori_edit', {'id': categuori.id}) }}">edit</a>
+
+    {{ include('categuori/_delete_form.html.twig') }}
+{% endblock %}

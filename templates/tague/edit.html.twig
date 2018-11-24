@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Tague{% endblock %}
+
+{% block body %}
+    <h1>Edit Tague</h1>
+
+    {{ include('tague/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('tague_index') }}">back to list</a>
+
+    {{ include('tague/_delete_form.html.twig') }}
+{% endblock %}

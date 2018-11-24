@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categuori index{% endblock %}
+
+{% block body %}
+    <h1>Categuori index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categuori in categuoris %}
+            <tr>
+                <td>{{ categuori.id }}</td>
+                <td>{{ categuori.name }}</td>
+                <td>
+                    <a href="{{ path('categuori_show', {'id': categuori.id}) }}">show</a>
+                    <a href="{{ path('categuori_edit', {'id': categuori.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('categuori_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Categuori{% endblock %}
+
+{% block body %}
+    <h1>Create new Categuori</h1>
+
+    {{ include('categuori/_form.html.twig') }}
+
+    <a href="{{ path('categuori_index') }}">back to list</a>
+{% endblock %}
